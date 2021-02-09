@@ -1,4 +1,4 @@
-.profile__info_job {
+.profile__info__job {
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -9,7 +9,7 @@
 }
 
 @media all and (max-width: 321px) {
-    .profile__info_job {
+    .profile__info__job {
         font-size: 14px;
         line-height: 17px;
         text-align: center;
