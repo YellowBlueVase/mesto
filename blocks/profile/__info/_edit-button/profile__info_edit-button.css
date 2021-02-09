@@ -8,7 +8,7 @@
 }
 
 .profile__info_edit-button:hover {
-    background-image: url("../../../../images/edit-button-hover.png")
+    background-image: url("../../../../images/edit-button-hover.png");
 }
 
 @media all and (max-width: 321px) {
