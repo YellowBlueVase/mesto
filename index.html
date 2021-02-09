@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Mesto</title>
+</head>
+<body class="page">
+    <header class="header">
+      <img src="images/mesto-russia.svg" class="header__logo" alt="Mesto - Russia">
+      <p class="header__line"></p>
+    </header>
+    <main>
+      <section class="profile">
+        <img src="images/kusto-avatar.svg" class="profile__avatar" alt="Аватар">
+        <div class="profile__info">
+          <h1 class="profile__info_name">Жак-Ив Кусто</h1>
+          <p class="profile__info_edit-button"></p>
+          <p class="profile__info_job">Исследователь океана</p>
+        </div>
+        <p class="profile__add-button"></p>
+      </section>
+
+      <section class="elements">
+        <div class="elements__card">
+          <img src="images/karachaevsk.jpg" class="elements__card_image" alt="Карачаевск">
+          <h2 class="elements__card_title">Карачаевск</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+        <div class="elements__card">
+          <img src="images/elbrus.jpg" class="elements__card_image" alt="Гора Эльбрус">
+          <h2 class="elements__card_title">Гора Эльбрус</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+        <div class="elements__card">
+          <img src="images/dombai.jpg" class="elements__card_image" alt="Домбай">
+          <h2 class="elements__card_title">Домбай</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+        <div class="elements__card">
+          <img src="images/elbrus2.jpg" class="elements__card_image" alt="Гора Эльбрус">
+          <h2 class="elements__card_title">Гора Эльбрус</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+        <div class="elements__card">
+          <img src="images/dombai2.jpg" class="elements__card_image" alt="Домбай">
+          <h2 class="elements__card_title">Домбай</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+        <div class="elements__card">
+          <img src="images/karachaevsk2.jpg" class="elements__card_image" alt="Карачаевск">
+          <h2 class="elements__card_title">Карачаево-Черкессия</h2>
+          <img src="images/like.svg" class="elements__card_like" alt="Кнопка нравится">
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+      </footer>
+
+      <section class="popup">
+        <form class="popup__container">
+          <p class="popup__container_close-button"></p>
+          <h2 class="popup__container_title">Редактировать профиль</h2>
+          <input type="text" placeholder="Имя" class="popup__container_name-input"/></input>
+          <input type="text" placeholder="О себе" class="popup__container_job-input"/></input>
+          <input type="submit" value="Сохранить" class="popup__container_submit"/></input>
+        </form>
+      </section>
+    </main>
+
+    <script src="pages/script.js"></script> 
+</body>
+</html>

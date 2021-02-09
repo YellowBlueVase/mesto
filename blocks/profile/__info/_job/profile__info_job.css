@@ -1,0 +1,19 @@
+.profile__info_job {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 22px;
+    flex-basis: 100%;
+    margin: 16px 0 0 0;
+    padding: 0;
+}
+
+@media all and (max-width: 321px) {
+    .profile__info_job {
+        font-size: 14px;
+        line-height: 17px;
+        text-align: center;
+        font-style: normal;
+        margin: 14px 0 0 0;
+    }
+}
