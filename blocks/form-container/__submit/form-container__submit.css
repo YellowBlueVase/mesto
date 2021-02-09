@@ -1,4 +1,4 @@
-.popup__container_submit {
+.form-container__submit {
     background-color: #000000;
     border-radius: 2px;
     max-width: 358px;
@@ -12,14 +12,14 @@
     cursor: pointer;
 }
 
-.popup__container_submit:hover {
+.form-container__submit:hover {
     background-color: #000000;
     border-radius: 2px;
     opacity: 0.8;
 }
 
 @media all and (max-width: 321px) {
-    .popup__container_submit {
+    .form-container__submit {
         min-width: 238px;
     }
 }
