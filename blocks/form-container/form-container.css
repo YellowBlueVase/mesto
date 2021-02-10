@@ -10,11 +10,12 @@
     display: flex;
     flex-direction: column;
     width: 430px;
-    margin: auto;
+    min-width: 282px;
+    margin: 0 19px 0;
     padding: 34px 36px 37px;
 }
 
-@media all and (max-width: 321px) {
+@media all and (max-width: 500px) {
     .form-container {
         width: 282px;
         padding: 25px 22px;
