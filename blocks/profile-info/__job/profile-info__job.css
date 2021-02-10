@@ -6,8 +6,8 @@
     flex-basis: 100%;
     margin: 16px 0 0 0;
     padding: 0;
-    text-overflow: ellipsis; 
-    white-space: nowrap; 
+    text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
     max-width: 500px;
 }

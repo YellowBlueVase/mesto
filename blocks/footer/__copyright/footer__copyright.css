@@ -1,9 +1,4 @@
-.footer {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    margin: 67px 200px 60px;
-    max-width: 100%;
+.footer__copyright {
     font-size: 18px;
     line-height: 22px;
     color: #545454;
@@ -11,8 +6,7 @@
 
 
 @media all and (max-width: 321px) {
-    .footer {
-        margin: 48px 19px 36px;
+    .footer__copyright {
         font-size: 14px;
         line-height: 17px;
     }
