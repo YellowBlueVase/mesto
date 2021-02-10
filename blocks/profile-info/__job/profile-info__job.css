@@ -6,14 +6,23 @@
     flex-basis: 100%;
     margin: 16px 0 0 0;
     padding: 0;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    overflow: hidden;
+    max-width: 500px;
+}
+
+@media all and (max-width: 1280px) {
+    .profile-info__job {
+        text-align: center;
+        margin: 14px 0 0 0;
+        max-width: 280px;
+    }
 }
 
 @media all and (max-width: 321px) {
     .profile-info__job {
         font-size: 14px;
         line-height: 17px;
-        text-align: center;
-        font-style: normal;
-        margin: 14px 0 0 0;
     }
 }

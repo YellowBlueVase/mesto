@@ -9,14 +9,14 @@
     justify-self: center;
     display: flex;
     flex-direction: column;
-    max-width: 430px;
+    width: 430px;
     margin: auto;
     padding: 34px 36px 37px;
 }
 
 @media all and (max-width: 321px) {
     .form-container {
-        min-width: 282px;
+        width: 282px;
         padding: 25px 22px;
     }
 }

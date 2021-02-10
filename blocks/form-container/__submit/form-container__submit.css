@@ -1,6 +1,7 @@
 .form-container__submit {
     background-color: #000000;
     border-radius: 2px;
+    height: 50px;
     max-width: 358px;
     font-style: normal;
     font-weight: normal;
@@ -10,16 +11,19 @@
     color: #FFFFFF;
     margin: 48px 0 0 0;
     cursor: pointer;
+    border: 0;
+    text-align: center;
 }
 
 .form-container__submit:hover {
-    background-color: #000000;
-    border-radius: 2px;
     opacity: 0.8;
 }
 
 @media all and (max-width: 321px) {
     .form-container__submit {
         min-width: 238px;
+        font-size: 14px;
+        line-height: 17px;
+        height: 46px;
     }
 }

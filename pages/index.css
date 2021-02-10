@@ -5,6 +5,7 @@
 @import url(../blocks/card/card.css);
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__like/card__like.css);
+@import url(../blocks/card/__like/_active/card__like_active.css);
 @import url(../blocks/card/__title/card__title.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
@@ -22,7 +23,8 @@
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/form-container/form-container.css);
 @import url(../blocks/form-container/__close-button/form-container__close-button.css);
-@import url(../blocks/form-container/__job-input/form-container__job-input.css);
-@import url(../blocks/form-container/__name-input/form-container__name-input.css);
+@import url(../blocks/form-container/__input/form-container__input.css);
+@import url(../blocks/form-container/__input/_job/form-container__input_job.css);
+@import url(../blocks/form-container/__input/_name/form-container__input_name.css);
 @import url(../blocks/form-container/__submit/form-container__submit.css);
 @import url(../blocks/form-container/__title/form-container__title.css);

@@ -6,7 +6,7 @@
     background-color: #ffffff;
     width: 282px;
     min-width: 282px;
-    height: 361px;
+    padding: 0;
     border-radius: 10px;
     overflow: hidden;
 }
