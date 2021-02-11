@@ -1,4 +1,4 @@
-.form-container__close-button {
+.popup__close-button {
     position: absolute;
     top: -40px;
     right: -40px;
@@ -7,19 +7,19 @@
     background-image: url('../../../images/close-button.svg');
     background-position: center;
     cursor: pointer;
-    background-color: black;
+    background-color: transparent;
     border: none;
     text-decoration: none;
     display: inline-block;
     outline: 0;
 }
 
-.form-container__close-button:hover {
+.popup__close-button:hover {
     opacity: 0.6;
 }
 
 @media all and (max-width: 500px) {
-    .form-container__close-button {
+    .popup__close-button {
         top: -40px;
         right: 0;
         width: 26px;

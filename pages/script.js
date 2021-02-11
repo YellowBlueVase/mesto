@@ -1,17 +1,17 @@
-let editButton = document.querySelector('.profile-info__edit-button');
+let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
-let closeButton = document.querySelector('.form-container__close-button');
+let closeButton = document.querySelector('.popup__close-button');
 let formElement = popup.querySelector('.form-container')
 let nameInput = document.querySelector('.form-container__input_name');
-let nameField = document.querySelector('.profile-info__name');
+let nameField = document.querySelector('.profile__name');
 let jobInput = document.querySelector('.form-container__input_job');
-let jobField = document.querySelector('.profile-info__job');
+let jobField = document.querySelector('.profile__job');
 let likeButton = document.querySelector('.card__like')
 
 function openPopup() {
-  if (!popup.classList.contains('popup_opened')) {
-    popup.classList.add('popup_opened')
-  }
+  nameInput.value = nameField.textContent
+  jobInput.value = jobField.textContent
+  popup.classList.add('popup_opened')
 }
 
 function closePopup(evt) {
@@ -29,6 +29,8 @@ function formSubmitHandler (evt) {
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
 
+  // Марина, вас нет в слаке, поэтому пишу здесь - если я просто заменю на closePopup, то у меня форма не будет сабмититься. 
+  // Просто повесить еще одно условие на сабмит кнопку не работает. Как написать функцию Popup так, чтобы сабмитилась, я не разобрался...
   popup.classList.remove('popup_opened');
 }
 

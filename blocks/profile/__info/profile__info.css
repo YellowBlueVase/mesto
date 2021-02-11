@@ -1,4 +1,4 @@
-.profile-info {
+.profile__info {
     display: flex;
     flex-wrap: wrap;
     max-width: 500px;
@@ -8,7 +8,7 @@
 }
 
 @media all and (max-width: 1280px) {
-    .profile-info {
+    .profile__info {
         justify-content: center;
         min-width: 280px;
         margin: 0 0 36px 0;

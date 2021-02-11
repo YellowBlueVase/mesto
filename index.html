@@ -8,66 +8,66 @@
 </head>
 <body class="page">
     <header class="header">
-      <p class="header__logo"></p>
+      <div class="header__logo"></div>
     </header>
     <main>
       <section class="profile">
-        <img src="images/kusto-avatar.svg" class="profile__avatar" alt="Аватар">
-        <div class="profile-info">
-          <h1 class="profile-info__name">Жак-Ив Кусто</h1>
-          <button type="button" class="profile-info__edit-button"></button>
-          <p class="profile-info__job">Исследователь океана</p>
+        <img src="images/kusto-avatar.svg" class="profile__avatar" alt="Фотография человека">
+        <div class="profile__info">
+          <h1 class="profile__name">Жак-Ив Кусто</h1>
+          <button type="button" name="edit-button" class="profile__edit-button"></button>
+          <p class="profile__job">Исследователь океана</p>
         </div>
-        <button type="button" class="profile__add-button"></button>
+        <button type="button" name="add-button" class="profile__add-button"></button>
       </section>
 
       <section class="elements">
         <div class="card">
           <img src="images/karachaevsk.jpg" class="card__image" alt="Карачаевск">
           <h2 class="card__title">Карачаевск</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" name="like-button" class="card__like"></button>
         </div>
         <div class="card">
           <img src="images/elbrus.jpg" class="card__image" alt="Гора Эльбрус">
           <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" name="like-button" class="card__like"></button>
         </div>
         <div class="card">
           <img src="images/dombai.jpg" class="card__image" alt="Домбай">
           <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" name="like-button" class="card__like"></button>
         </div>
         <div class="card">
           <img src="images/elbrus2.jpg" class="card__image" alt="Гора Эльбрус">
           <h2 class="card__title">Гора Эльбрус</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" name="like-button" class="card__like"></button>
         </div>
         <div class="card">
           <img src="images/dombai2.jpg" class="card__image" alt="Домбай">
           <h2 class="card__title">Домбай</h2>
-          <button type="button" class="card__like"></button>
+          <button type="button" name="like-button" class="card__like"></button>
         </div>
         <div class="card">
           <img src="images/karachaevsk2.jpg" class="card__image" alt="Карачаевск">
           <h2 class="card__title">Карачаево-Черкессия</h2>
           <button type="button" class="card__like"></button>
         </div>
-      </section>
-
-      <footer class="footer">
-        <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
-      </footer>
-
-      <div class="popup">
-        <form name="Форма редактирования" class="form-container">
-          <button type="button" class="form-container__close-button"></button>
-          <h2 class="form-container__title">Редактировать профиль</h2>
-          <input type="text" name="Поле для ввода имени" placeholder="Имя" required class="form-container__input form-container__input_name"/>
-          <input type="text" name="Поле для ввода информации о себе" placeholder="О себе" required class="form-container__input form-container__input_job"/>
-          <button type="submit" name="Кнопка сохранить" required class="form-container__submit">Сохранить</button>
-        </form>
-      </div>
+      </section>  
     </main>
+
+    <footer class="footer">
+      <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
+    </footer>
+
+    <div class="popup">
+      <button type="button" class="popup__close-button"></button>
+      <form name="edit-form" class="form-container">
+        <h2 class="form-container__title">Редактировать профиль</h2>
+        <input type="text" name="person-name" placeholder="Имя" required class="form-container__input form-container__input_name"/>
+        <input type="text" name="job-description" placeholder="О себе" required class="form-container__input form-container__input_job"/>
+        <button type="submit" name="submit-button" class="form-container__submit">Сохранить</button>
+      </form>
+    </div>
 
     <script src="pages/script.js"></script> 
 </body>
