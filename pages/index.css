@@ -21,7 +21,8 @@
 @import url(../blocks/profile/__name/profile__name.css);
 @import url(../blocks/popup/popup.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
-@import url(../blocks/fpopup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__close-button/popup__close-button.css);
+@import url(../blocks/popup/__container/popup__container.css);
 @import url(../blocks/form-container/form-container.css);
 @import url(../blocks/form-container/__input/form-container__input.css);
 @import url(../blocks/form-container/__input/_job/form-container__input_job.css);

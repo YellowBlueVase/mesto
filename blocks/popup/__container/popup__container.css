@@ -1,0 +1,15 @@
+.popup__container {
+    border-radius: 10px;
+    box-sizing: border-box;
+    position: relative;
+    align-self: center;
+    justify-self: center;
+    width: 430px;
+    min-width: 282px;
+}
+
+@media all and (max-width: 500px) {
+    .popup__container {
+        width: 282px;
+    }
+}

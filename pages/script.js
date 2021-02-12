@@ -6,7 +6,7 @@ let nameInput = document.querySelector('.form-container__input_name');
 let nameField = document.querySelector('.profile__name');
 let jobInput = document.querySelector('.form-container__input_job');
 let jobField = document.querySelector('.profile__job');
-let likeButton = document.querySelector('.card__like')
+let likeButton = document.querySelectorAll('.card__like')
 
 function openPopup() {
   nameInput.value = nameField.textContent
@@ -20,8 +20,8 @@ function closePopup(evt) {
   }
 }
 
-function toggleLike() {
-  likeButton.classList.toggle('card__like_active')
+function toggleLike (evt) {
+  evt.target.classList.toggle('card__like_active')
 }
 
 function formSubmitHandler (evt) {
