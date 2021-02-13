@@ -1,4 +1,4 @@
-// VARIABLES AND ARRAYS -------------------------------------------------------------------------------
+// GLOBAL VARIABLES AND LISTS -------------------------------------------------------------------------------
 
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
@@ -46,16 +46,31 @@ const initialCards = [
 ]; 
 
 // FUNCTIONS -------------------------------------------------------------------------------  
-function openPopup(evt) {
-  nameInput.value = nameField.textContent
+function formEditSetUp() {
+  nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent
-  popup.classList.add('popup_opened')
+
+  let popupEdit = document.querySelector('#edit-profile')
+  popupEdit.classList.add('popup_opened')
+  let closeButton = popupEdit.querySelector('.popup__close-button')
+  popupEdit.addEventListener('click', (evt) => {
+    if (evt.target === (popupEdit) || evt.target === closeButton) {
+      popupEdit.classList.remove('popup_opened')
+    }
+  })
+  formElement.addEventListener('submit', formSubmitHandler)
 }
 
-function closePopup(evt) {
-  if (evt.target === popup || evt.target === closeButton) {
-    popup.classList.remove('popup_opened')
-  }
+function formAddNewPlace() {  
+  let popupNewPlace = document.querySelector('#new-place')
+  popupNewPlace.classList.add('popup_opened')
+  let closeButton = popupNewPlace.querySelector('.popup__close-button')
+  popupNewPlace.addEventListener('click', (evt) => {
+    if (evt.target === (popupNewPlace) || evt.target === closeButton) {
+      popupNewPlace.classList.remove('popup_opened')
+    }
+  })
+  imageContainer.addEventListener('submit', formSubmitNewPlace)
 }
 
 function formSubmitHandler (evt) {
@@ -115,16 +130,8 @@ function createNewCard(element) {
 
 // EXECUTION COMMANDS -------------------------------------------------------------------------------
 
-editButton.addEventListener('click', openPopup)
-addButton.addEventListener('click', () => {
-  popupNewPlace.classList.add('popup_opened')
-})
-closeButton.forEach(button => {
-  button.addEventListener('click', closePopup)
-})
-popup.addEventListener('click', closePopup)
-formElement.addEventListener('submit', formSubmitHandler);
-imageContainer.addEventListener('submit', formSubmitNewPlace)
+editButton.addEventListener('click', formEditSetUp)
+addButton.addEventListener('click', formAddNewPlace)
 
 initialCards.forEach((item) => {
   createNewCard(item)
