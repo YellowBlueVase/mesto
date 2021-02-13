@@ -10,6 +10,8 @@ let nameInput = document.querySelector('.form-container__input_name');
 let nameField = document.querySelector('.profile__name');
 let jobInput = document.querySelector('.form-container__input_job');
 let jobField = document.querySelector('.profile__job');
+let avatarInput = document.querySelector('.form-container__input_avatar');
+let avatarField = document.querySelector('.profile__avatar')
 let placeInput = document.querySelector('.form-container__input_place');
 let imageInput = document.querySelector('.form-container__input_image');
 let likeButton = document.querySelector('.card__like');
@@ -43,8 +45,7 @@ const initialCards = [
   }
 ]; 
 
-// FUNCTIONS -------------------------------------------------------------------------------
-
+// FUNCTIONS -------------------------------------------------------------------------------  
 function openPopup(evt) {
   nameInput.value = nameField.textContent
   jobInput.value = jobField.textContent
@@ -61,6 +62,9 @@ function formSubmitHandler (evt) {
   evt.preventDefault(); 
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
+  if (avatarInput.value) {
+    avatarField.src = avatarInput.value
+  }
   
   popup.classList.remove('popup_opened');
 }
