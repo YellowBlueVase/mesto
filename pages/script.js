@@ -1,8 +1,11 @@
+// VARIABLES AND ARRAYS -------------------------------------------------------------------------------
+
 let editButton = document.querySelector('.profile__edit-button');
 let popup = document.querySelector('.popup');
 let popupNewPlace = document.querySelector('#new-place')
 let closeButton = document.querySelectorAll('.popup__close-button');
 let formElement = popup.querySelector('.form-container')
+let imageContainer = document.querySelector('#new-place-container')
 let nameInput = document.querySelector('.form-container__input_name');
 let nameField = document.querySelector('.profile__name');
 let jobInput = document.querySelector('.form-container__input_job');
@@ -13,42 +16,6 @@ let likeButton = document.querySelector('.card__like');
 let addButton = document.querySelector('.profile__add-button');
 let cardTemplate = document.querySelector('#card-template').content;
 let elementsList = document.querySelector('.elements');
-
-
-function openPopup(evt) {
-  nameInput.value = nameField.textContent
-  jobInput.value = jobField.textContent
-  popup.classList.add('popup_opened')
-}
-
-function closePopup(evt) {
-  if (evt.target === popup || evt.target === closeButton) {
-    popup.classList.remove('popup_opened')
-  }
-}
-
-function formSubmitHandler (evt) {
-  evt.preventDefault(); 
-  nameField.textContent = nameInput.value;
-  jobField.textContent = jobInput.value;
-  
-  popup.classList.remove('popup_opened');
-}
-
-editButton.addEventListener('click', openPopup)
-addButton.addEventListener('click', () => {
-  popupNewPlace.classList.add('popup_opened')
-})
-closeButton.forEach(button => {
-  button.addEventListener('click', closePopup)
-})
-popup.addEventListener('click', closePopup)
-formElement.addEventListener('submit', formSubmitHandler);
-
-
-
-
-
 const initialCards = [
   {
     name: 'Архыз',
@@ -76,7 +43,45 @@ const initialCards = [
   }
 ]; 
 
-initialCards.forEach((element) => {
+// FUNCTIONS -------------------------------------------------------------------------------
+
+function openPopup(evt) {
+  nameInput.value = nameField.textContent
+  jobInput.value = jobField.textContent
+  popup.classList.add('popup_opened')
+}
+
+function closePopup(evt) {
+  if (evt.target === popup || evt.target === closeButton) {
+    popup.classList.remove('popup_opened')
+  }
+}
+
+function formSubmitHandler (evt) {
+  evt.preventDefault(); 
+  nameField.textContent = nameInput.value;
+  jobField.textContent = jobInput.value;
+  
+  popup.classList.remove('popup_opened');
+}
+
+function formSubmitNewPlace (evt) {
+  evt.preventDefault();
+
+  const newPlace = {
+    name: placeInput.value,
+    link: imageInput.value
+  }
+
+  createNewCard(newPlace)
+
+  evt.target.closest('.popup').classList.remove('popup_opened')
+
+  placeInput.value = ''
+  imageInput.value = ''
+}
+
+function createNewCard(element) {
   const cardElement = cardTemplate.cloneNode(true);
 
   cardElement.querySelector('.card__title').textContent = element.name;
@@ -87,6 +92,11 @@ initialCards.forEach((element) => {
   cardElement.querySelector('.card__delete-button').addEventListener("click", (evt) => {
     evt.target.closest('.card').remove();
   })
+  
+  imageElement = cardElement.querySelector('.card__image')
+  imageElement.addEventListener("click", evt => {
+    evt.target.closest('.card').querySelector('.popup').classList.add('popup_opened')
+  })
   cardElement.querySelector('.image-container__image').src = element.link;
   cardElement.querySelector('.image-container__title').textContent = element.name;
   cardElement.querySelector('.popup__close-button').addEventListener("click", (evt) => {
@@ -95,11 +105,23 @@ initialCards.forEach((element) => {
   cardElement.querySelector('.popup').addEventListener("click", (evt) => {
     evt.target.classList.toggle('popup_opened')
   })
-
-  imageElement = cardElement.querySelector('.card__image')
-  imageElement.addEventListener("click", evt => {
-    evt.target.closest('.card').querySelector('.popup').classList.add('popup_opened')
-  })
   
-  elementsList.append(cardElement)
+  elementsList.prepend(cardElement)
+}
+
+// EXECUTION COMMANDS -------------------------------------------------------------------------------
+
+editButton.addEventListener('click', openPopup)
+addButton.addEventListener('click', () => {
+  popupNewPlace.classList.add('popup_opened')
+})
+closeButton.forEach(button => {
+  button.addEventListener('click', closePopup)
+})
+popup.addEventListener('click', closePopup)
+formElement.addEventListener('submit', formSubmitHandler);
+imageContainer.addEventListener('submit', formSubmitNewPlace)
+
+initialCards.forEach((item) => {
+  createNewCard(item)
 })
