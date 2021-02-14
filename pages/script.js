@@ -68,8 +68,7 @@ function submitNewPlaceForm (evt) {
   elementsList.prepend(createNewCard(newPlace))
   closePopup(evt)
 
-  placeInput.value = ''
-  imageInput.value = ''
+  addNewPlaceForm.reset()
 }
 
 function createNewCard(element) {
