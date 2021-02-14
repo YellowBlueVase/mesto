@@ -4,6 +4,9 @@ const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
 
 const popups = document.querySelectorAll('.popup');
+const popupEditProfile = document.querySelector('.popup_type_edit-profile');
+const popupNewPlace = document.querySelector('.popup_type_new-place');
+const popupLargeImage = document.querySelector('.popup_type_large-image');
 
 const popupCloseButtons = document.querySelectorAll('.popup__close-button')
 
@@ -22,23 +25,23 @@ const elementsList = document.querySelector('.elements');
 
 
 // FUNCTIONS -------------------------------------------------------------------------------  
-function openPopup(popup_class) {
-  document.querySelector(popup_class).classList.add('popup_opened')
-  if (popup_class === '.popup_type_edit-profile') {
-    nameInput.value = nameField.textContent;
-    jobInput.value = jobField.textContent
-  }
+function openPopup(popup) {
+  popup.classList.add('popup_opened')
 }
 
-function closePopup(evt) {
-  if (evt.target.classList.contains('popup') || evt.target.classList.contains('popup__close-button') || evt.target.classList.contains('form-container__submit')) {
-    evt.target.closest('.popup').classList.remove('popup_opened')
-  }
+function openProfilePopup(popup) {
+  nameInput.value = nameField.textContent;
+  jobInput.value = jobField.textContent;
+  openPopup(popup);
+}
+
+function closePopup(popup) {
+  popup.classList.remove('popup_opened')
 }
 
 function editProfile (evt) {
   evt.preventDefault(); 
-  openPopup('.popup_type_edit-profile')
+  openProfilePopup(popupEditProfile)
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
 
@@ -49,12 +52,12 @@ function submitEditForm (evt) {
   evt.preventDefault(); 
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
-  closePopup(evt)
+  closePopup(popupEditProfile)
 }
 
 function addNewPlace (evt) {
   evt.preventDefault();  
-  openPopup('.popup_type_new-place')
+  openPopup(popupNewPlace)
   addNewPlaceForm.addEventListener('submit', submitNewPlaceForm)
 }
 
@@ -66,7 +69,7 @@ function submitNewPlaceForm (evt) {
   }
 
   elementsList.prepend(createNewCard(newPlace))
-  closePopup(evt)
+  closePopup(popupNewPlace)
 
   addNewPlaceForm.reset()
 }
@@ -84,7 +87,7 @@ function createNewCard(element) {
   })
 
   cardElement.querySelector('.card__image').addEventListener("click", () => {
-    openPopup('.popup_type_large-image')
+    openPopup(popupLargeImage)
     document.querySelector('.image-container__image').src = element.link;
     document.querySelector('.image-container__title').textContent = element.name;
   })
@@ -98,8 +101,13 @@ initialCards.forEach((item) => {
 editButton.addEventListener('click', editProfile)
 addButton.addEventListener('click', addNewPlace)
 popupCloseButtons.forEach(button => {
-  button.addEventListener('click', closePopup)
+  const popup = button.closest('.popup');
+  button.addEventListener('click', () => closePopup(popup))
 })
 popups.forEach(popup => {
-  popup.addEventListener('click', closePopup)
+  popup.addEventListener('click', (evt) => {
+    if (evt.target.classList.contains('popup')) {
+      closePopup(popup)
+    }
+  })
 })
