@@ -30,23 +30,22 @@
       <p class="footer__copyright">&#169; 2020 Mesto Russia</p>
     </footer>
 
-    <div class="popup" id='edit-profile'>
+    <div class="popup popup_type_edit-profile">
       <div class="popup__container">
         <button type="button" name="close-button" class="popup__close-button"></button>
-        <form name="form" class="form-container">
+        <form name="form" class="form-container form-container_edit-profile">
           <h2 class="form-container__title">Редактировать профиль</h2>
           <input type="text" name="person-name" placeholder="Имя" required class="form-container__input form-container__input_name"/>
           <input type="text" name="job-description" placeholder="О себе" required class="form-container__input form-container__input_job"/>
-          <input type="text" name="avatar-image" placeholder="Ссылка на фотографию человека (не обязательное поле)" class="form-container__input form-container__input_avatar"/>
           <button type="submit" name="submit-button" class="form-container__submit">Сохранить</button>
         </form>
       </div>
     </div>
 
-    <div class="popup" id='new-place'>
+    <div class="popup popup_type_new-place">
       <div class="popup__container">
         <button type="button" name="close-button" class="popup__close-button"></button>
-        <form name="form" class="form-container" id='new-place-container'>
+        <form name="form" class="form-container form-container_new-place">
           <h2 class="form-container__title">Новое место</h2>
           <input type="text" name="place-name" placeholder="Название" required class="form-container__input form-container__input_place"/>
           <input type="text" name="img-link" placeholder="Ссылка на картинку" required class="form-container__input form-container__input_image"/>
@@ -55,24 +54,27 @@
       </div>
     </div>
     
+    <div class="popup popup_type_large-image">
+      <div class="popup__container">
+        <button type="button" name="close-button" class="popup__close-button"></button>
+        <div class="image-container">
+          <img src="" class="image-container__image">
+          <h3 class="image-container__title"></h3>
+        </div>
+      </div>
+    </div>
+
     <template id="card-template">
       <div class="card">
         <img src="null" class="card__image" alt="">
         <h2 class="card__title"></h2>
         <button type="button" name="like-button" class="card__like"></button>
         <button type="button" name="delete-button" class="card__delete-button"></button>
-        <div class="popup" id='large-image'>
-          <div class="popup__container">
-            <button type="button" name="close-button" class="popup__close-button"></button>
-            <div class="image-container">
-              <img src="null" class="image-container__image">
-              <h3 class="image-container__title"></h3>
-            </div>
-          </div>
-        </div>
       </div>
     </template>
 
+    <script src="scripts/initial-cards.js"></script> 
     <script src="pages/script.js"></script> 
+
 </body>
 </html>
