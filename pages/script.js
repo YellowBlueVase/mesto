@@ -39,26 +39,11 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened')
 }
 
-function editProfile (evt) {
-  evt.preventDefault(); 
-  openProfilePopup(popupEditProfile)
-  nameInput.value = nameField.textContent;
-  jobInput.value = jobField.textContent;
-
-  editForm.addEventListener('submit', submitEditForm)
-}
-
 function submitEditForm (evt) {
   evt.preventDefault(); 
   nameField.textContent = nameInput.value;
   jobField.textContent = jobInput.value;
   closePopup(popupEditProfile)
-}
-
-function addNewPlace (evt) {
-  evt.preventDefault();  
-  openPopup(popupNewPlace)
-  addNewPlaceForm.addEventListener('submit', submitNewPlaceForm)
 }
 
 function submitNewPlaceForm (evt) {
@@ -98,8 +83,10 @@ function createNewCard(element) {
 initialCards.forEach((item) => {
   elementsList.prepend(createNewCard(item))
 })
-editButton.addEventListener('click', editProfile)
-addButton.addEventListener('click', addNewPlace)
+editButton.addEventListener('click', () => openProfilePopup(popupEditProfile))
+editForm.addEventListener('submit', submitEditForm)
+addButton.addEventListener('click', () => openPopup(popupNewPlace))
+addNewPlaceForm.addEventListener('submit', submitNewPlaceForm)
 popupCloseButtons.forEach(button => {
   const popup = button.closest('.popup');
   button.addEventListener('click', () => closePopup(popup))
