@@ -27,6 +27,12 @@ const elementsList = document.querySelector('.elements');
 // FUNCTIONS -------------------------------------------------------------------------------  
 function openPopup(popup) {
   popup.classList.add('popup_opened')
+
+  window.addEventListener('keydown', closePopupEsc(popup))
+
+  const submitButton = popup.querySelector('.form-container__submit')
+  submitButton.setAttribute('disabled', 'true')
+  submitButton.classList.add('form-container__submit_inactive')
 }
 
 function openProfilePopup(popup) {
@@ -35,9 +41,21 @@ function openProfilePopup(popup) {
   openPopup(popup);
 }
 
+function closePopupEsc(popup) {
+  window.addEventListener('keydown', (evt) => {
+    if (evt.key === 'Escape') {
+      closePopup(popup)
+      }
+  })
+}
+
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
+
+  window.removeEventListener('keyup', closePopupEsc)
 }
+
+
 
 function submitEditForm (evt) {
   evt.preventDefault(); 
@@ -61,9 +79,9 @@ function submitNewPlaceForm (evt) {
 
 function createNewCard(element) {
   const cardElement = cardTemplate.cloneNode(true);
-
+  const cardImage = cardElement.querySelector('.card__image')
   cardElement.querySelector('.card__title').textContent = element.name;
-  cardElement.querySelector('.card__image').src = element.link;
+  cardImage.src = element.link;
   cardElement.querySelector('.card__like').addEventListener("click", (evt) => {
       evt.target.classList.toggle('card__like_active')
   })
@@ -71,13 +89,14 @@ function createNewCard(element) {
     evt.target.closest('.card').remove();
   })
 
-  cardElement.querySelector('.card__image').addEventListener("click", () => {
+  cardImage.addEventListener("click", () => {
     openPopup(popupLargeImage)
     document.querySelector('.image-container__image').src = element.link;
     document.querySelector('.image-container__title').textContent = element.name;
   })
   return cardElement
 }
+ 
 
 // EXECUTION COMMANDS -------------------------------------------------------------------------------
 initialCards.forEach((item) => {
@@ -94,7 +113,6 @@ popupCloseButtons.forEach(button => {
 popups.forEach(popup => {
   popup.addEventListener('click', (evt) => {
     if (evt.target.classList.contains('popup')) {
-      closePopup(popup)
-    }
-  })
-})
+      closePopup(popup)}
+  });
+});
