@@ -28,31 +28,34 @@ const elementsList = document.querySelector('.elements');
 function openPopup(popup) {
   popup.classList.add('popup_opened')
 
-  window.addEventListener('keydown', closePopupEsc(popup))
+  window.addEventListener('keydown', closePopupEsc)
+}
 
+function openForm(popup) {
   const submitButton = popup.querySelector('.form-container__submit')
   submitButton.setAttribute('disabled', 'true')
   submitButton.classList.add('form-container__submit_inactive')
+
+  openPopup(popup);
 }
 
 function openProfilePopup(popup) {
   nameInput.value = nameField.textContent;
   jobInput.value = jobField.textContent;
-  openPopup(popup);
+  openForm(popup);
 }
 
-function closePopupEsc(popup) {
-  window.addEventListener('keydown', (evt) => {
-    if (evt.key === 'Escape') {
-      closePopup(popup)
-      }
-  })
-}
+function closePopupEsc(evt) {
+  const popup = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    closePopup(popup)
+    }
+  }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened')
 
-  window.removeEventListener('keyup', closePopupEsc)
+  window.removeEventListener('keydown', closePopupEsc)
 }
 
 
@@ -104,7 +107,7 @@ initialCards.forEach((item) => {
 })
 editButton.addEventListener('click', () => openProfilePopup(popupEditProfile))
 editForm.addEventListener('submit', submitEditForm)
-addButton.addEventListener('click', () => openPopup(popupNewPlace))
+addButton.addEventListener('click', () => openForm(popupNewPlace))
 addNewPlaceForm.addEventListener('submit', submitNewPlaceForm)
 popupCloseButtons.forEach(button => {
   const popup = button.closest('.popup');
