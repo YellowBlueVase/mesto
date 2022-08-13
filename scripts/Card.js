@@ -4,11 +4,12 @@ class Card {
     _cardSelector
     _popup
 
-    constructor(data, cardSelector) {
+    constructor(data, cardSelector, handleCardClick) {
       this._name = data.name;
       this._link = data.link;
       this._cardSelector = cardSelector;
-      this._popup = document.querySelector('.popup_type_large-image')
+      this._popup = document.querySelector('.popup_type_large-image');
+      this._handleCardClick = handleCardClick;
     }
   
     _getTemplate() {
@@ -26,7 +27,7 @@ class Card {
     this._setEventListeners()
     this._element.querySelector('.card__title').textContent = this._name;
     this._element.querySelector('.card__image').src = this._link;
-
+    this._element.querySelector('.card__image').alt = `Картинка с местом ${this._name} маленького размера`;
     return this._element;
     } 
   
@@ -37,12 +38,9 @@ class Card {
         this._element.querySelector('.card__delete-button').addEventListener('click', () => {
             this._handleDeleteClick();
         });
-        this._element.querySelector('.card__image').addEventListener('click', () => {
-            this._handleOpenPopup();
-        });
-        this._popup.querySelector('.popup__close-button').addEventListener('click', () => {
-            this._handleClosePopup();
-        });
+        this._element.querySelector('.card__image').addEventListener('click', () => (
+            this._handleCardClick(this._name, this._link)
+        ))
     }
     
     _handleLikeClick() {
@@ -51,24 +49,6 @@ class Card {
 
     _handleDeleteClick() {
         this._element.closest('.card').remove();
-    }
-
-    _handleOpenPopup() {
-        this._popup.classList.add('popup_opened')
-        document.querySelector('.image-container__image').src = this._link;
-        document.querySelector('.image-container__title').textContent = this._name;
-        window.addEventListener('keydown', this._closePopupEsc)
-    }
-
-    _closePopupEsc = event => {
-        if (event.keyCode == 27) {
-            this._handleClosePopup()
-          }
-        }
-
-    _handleClosePopup() {
-        this._popup.classList.remove('popup_opened')
-        window.removeEventListener('keydown', this._closePopupEsc)
     }
 }
 

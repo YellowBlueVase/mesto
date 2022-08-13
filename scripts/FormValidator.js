@@ -1,4 +1,5 @@
 import Card from '../scripts/Card.js';
+import {closePopup} from '../pages/index.js';
 
 class FormValidator {
 
@@ -11,25 +12,18 @@ class FormValidator {
     this._inactiveButtonClass = 'form-container__submit_inactive';
     this._inputErrorClass = 'form-container__input_type_error';
     this._errorClass = 'form-container__input_error_active';
-    this._inputList = Array.from(this._form.querySelectorAll('.form-container__input'));
-    
-  }
-
-  enableValidation() {
-      this._setEventListeners();
+    this._inputList = Array.from(this._form.querySelectorAll('.form-container__input')); 
   }
 
   _setEventListeners() {
     this._button.addEventListener('click', () => {
-        this._handleOpenPopup();
-    });
-    this._popup.querySelector('.popup__close-button').addEventListener('click', () => {
-        this._handleClosePopup();
+      this._handleOpenForm();
     });
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitForm();
     })
+    
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
       this._toggleButtonState();
@@ -38,6 +32,10 @@ class FormValidator {
     })
   }
 
+  _handleOpenForm() {
+    this._popup(this._form.closest('.popup'));
+  }
+  
   _toggleButtonState() {
       if (this._hasInvalidInput()) {
         this._submitButton.classList.add(this._inactiveButtonClass);
@@ -75,40 +73,10 @@ class FormValidator {
       this._errorElement.textContent = '';
     };
 
-  _handleOpenPopup() {
-    this._popup.classList.add('popup_opened');
-    window.addEventListener('keydown', this._closePopupEsc);
-  }
-
-  _handleClosePopup() {
-    document.querySelector('.popup_opened').classList.remove('popup_opened');
-    window.removeEventListener('keydown', this._closePopupEsc);
-  }
-
-  _closePopupEsc = event => {
-    if (event.keyCode == 27) {
-        this._handleClosePopup()
-      }
-  }
-
   _submitForm() {
   }
-  
-//   _openForm(popup) {
-//     const submitButton = popup.querySelector('.form-container__submit')
-//     submitButton.setAttribute('disabled', 'true')
-//     submitButton.classList.add('form-container__submit_inactive')
-
-//     openPopup(popup);
-// }
-
-  // _openProfilePopup(popup) {
-  //     nameInput.value = nameField.textContent;
-  //     jobInput.value = jobField.textContent;
-  //     openForm(popup);
-  // }
 }
-//////////////////////////////////////
+////////////////////////////////////// 
 
 class FormEditProfile extends FormValidator {
   constructor (button, popup, form, submitButton) {
@@ -119,8 +87,8 @@ class FormEditProfile extends FormValidator {
     this._jobField = document.querySelector('.profile__job');
   }
 
-  _handleOpenPopup() {
-    super._handleOpenPopup();
+  _handleOpenForm() {
+    super._handleOpenForm();
     this._nameInput.value = this._nameField.textContent;
     this._jobInput.value = this._jobField.textContent;
   }
@@ -129,7 +97,8 @@ class FormEditProfile extends FormValidator {
     super._submitForm();
     this._nameField.textContent = this._nameInput.value;
     this._jobField.textContent = this._jobInput.value;
-    this._handleClosePopup();
+    closePopup(document.querySelector('.popup_opened'));
+    
   }
 }
 
@@ -149,8 +118,7 @@ class FormNewPlace extends FormValidator {
     const card = new Card(newPlace, '#card-template');
     const cardElement = card.generateCard();
     document.querySelector('.elements').prepend(cardElement);
-
-    this._handleClosePopup();
+    closePopup(document.querySelector('.popup_opened'));
     this._form.reset();
   }
 }
