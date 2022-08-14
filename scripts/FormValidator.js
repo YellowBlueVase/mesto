@@ -1,11 +1,10 @@
 import Card from '../scripts/Card.js';
-import {closePopup} from '../pages/index.js';
+import {openPopup, closePopup, createCard} from '../pages/index.js';
 
 class FormValidator {
 
-  constructor(button, popup, form) {
+  constructor(button, form) {
     this._button = button;
-    this._popup = popup;
     this._form = form;
     this._input = this._form.querySelector('.form-container__input');
     this._submitButton = this._form.querySelector('.form-container__submit');
@@ -13,9 +12,10 @@ class FormValidator {
     this._inputErrorClass = 'form-container__input_type_error';
     this._errorClass = 'form-container__input_error_active';
     this._inputList = Array.from(this._form.querySelectorAll('.form-container__input')); 
+    this._popup = this._form.closest('.popup');
   }
 
-  _setEventListeners() {
+  setEventListeners() {
     this._button.addEventListener('click', () => {
       this._handleOpenForm();
     });
@@ -33,7 +33,7 @@ class FormValidator {
   }
 
   _handleOpenForm() {
-    this._popup(this._form.closest('.popup'));
+    openPopup(this._popup);
   }
   
   _toggleButtonState() {
@@ -79,12 +79,14 @@ class FormValidator {
 ////////////////////////////////////// 
 
 class FormEditProfile extends FormValidator {
-  constructor (button, popup, form, submitButton) {
-    super(button, popup, form, submitButton)
+  constructor (button, form) {
+    super(button, form)
+    this._submitButton
     this._nameInput = document.querySelector('.form-container__input_name');
     this._nameField = document.querySelector('.profile__name');
     this._jobInput = document.querySelector('.form-container__input_job');
     this._jobField = document.querySelector('.profile__job');
+
   }
 
   _handleOpenForm() {
@@ -97,17 +99,25 @@ class FormEditProfile extends FormValidator {
     super._submitForm();
     this._nameField.textContent = this._nameInput.value;
     this._jobField.textContent = this._jobInput.value;
-    closePopup(document.querySelector('.popup_opened'));
+    closePopup();
     
   }
 }
 
 class FormNewPlace extends FormValidator {
-  constructor (button, popup, form, submitButton) {
-    super(button, popup, form, submitButton)
+  constructor (button, form) {
+    super(button, form)
+    this._submitButton
     this._placeInput = document.querySelector('.form-container__input_place');
     this._imageInput = document.querySelector('.form-container__input_image');
   }
+
+  _handleOpenForm() {
+    super._handleOpenForm();
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.setAttribute('disabled', 'true');
+  }
+
 
   _submitForm() {
     super._submitForm();
@@ -115,10 +125,8 @@ class FormNewPlace extends FormValidator {
       name: this._placeInput.value,
       link: this._imageInput.value
     }
-    const card = new Card(newPlace, '#card-template');
-    const cardElement = card.generateCard();
-    document.querySelector('.elements').prepend(cardElement);
-    closePopup(document.querySelector('.popup_opened'));
+    createCard(newPlace);
+    closePopup();
     this._form.reset();
   }
 }
