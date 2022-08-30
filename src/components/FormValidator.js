@@ -1,5 +1,5 @@
-import Card from '../scripts/Card.js';
-import {openPopup, closePopup, createCard} from '../pages/index.js';
+import { cardRenderer, handleFormSubmit } from '../utils/utils.js';
+import PopupWithForm from './PopupWithForm.js';
 
 class FormValidator {
 
@@ -13,6 +13,8 @@ class FormValidator {
     this._errorClass = 'form-container__input_error_active';
     this._inputList = Array.from(this._form.querySelectorAll('.form-container__input')); 
     this._popup = this._form.closest('.popup');
+    this._handleFormSubmit = handleFormSubmit;
+    this._popupWithForm = new PopupWithForm(this._popup, this._handleFormSubmit);
   }
 
   setEventListeners() {
@@ -23,7 +25,6 @@ class FormValidator {
       evt.preventDefault();
       this._submitForm();
     })
-    
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
       this._toggleButtonState();
@@ -33,7 +34,8 @@ class FormValidator {
   }
 
   _handleOpenForm() {
-    openPopup(this._popup);
+    this._popupWithForm.setEventListeners();
+    this._popupWithForm.open();
   }
   
   _toggleButtonState() {
@@ -96,11 +98,11 @@ class FormEditProfile extends FormValidator {
   }
 
   _submitForm() {
-    super._submitForm();
     this._nameField.textContent = this._nameInput.value;
     this._jobField.textContent = this._jobInput.value;
-    closePopup();
-    
+    super._submitForm();
+    this._popupWithForm.close();
+    this._form.reset();
   }
 }
 
@@ -120,13 +122,13 @@ class FormNewPlace extends FormValidator {
 
 
   _submitForm() {
-    super._submitForm();
-    const newPlace = {
+    const newPlace = [{
       name: this._placeInput.value,
       link: this._imageInput.value
-    }
-    createCard(newPlace);
-    closePopup();
+    }]
+    cardRenderer(newPlace);
+    super._submitForm();
+    this._popupWithForm.close();
     this._form.reset();
   }
 }
