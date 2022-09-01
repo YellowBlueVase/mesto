@@ -1,41 +1,25 @@
-import { cardRenderer, handleFormSubmit } from '../utils/utils.js';
-import PopupWithForm from './PopupWithForm.js';
-
 class FormValidator {
 
-  constructor(button, form) {
-    this._button = button;
+  constructor(form) {
     this._form = form;
     this._input = this._form.querySelector('.form-container__input');
-    this._submitButton = this._form.querySelector('.form-container__submit');
     this._inactiveButtonClass = 'form-container__submit_inactive';
     this._inputErrorClass = 'form-container__input_type_error';
     this._errorClass = 'form-container__input_error_active';
     this._inputList = Array.from(this._form.querySelectorAll('.form-container__input')); 
-    this._popup = this._form.closest('.popup');
-    this._handleFormSubmit = handleFormSubmit;
-    this._popupWithForm = new PopupWithForm(this._popup, this._handleFormSubmit);
+    this._submitButton = this._form.querySelector('.form-container__submit');
   }
 
   setEventListeners() {
-    this._button.addEventListener('click', () => {
-      this._handleOpenForm();
-    });
-    this._form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._submitForm();
-    })
+    this._submitButton.classList.add(this._inactiveButtonClass);
+    this._submitButton.setAttribute('disabled', 'true');
+        
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
       this._toggleButtonState();
       this._checkInputValidity(inputElement);
       })
     })
-  }
-
-  _handleOpenForm() {
-    this._popupWithForm.setEventListeners();
-    this._popupWithForm.open();
   }
   
   _toggleButtonState() {
@@ -74,63 +58,34 @@ class FormValidator {
       this._errorElement.classList.remove(this._errorClass);
       this._errorElement.textContent = '';
     };
-
-  _submitForm() {
-  }
 }
 ////////////////////////////////////// 
 
-class FormEditProfile extends FormValidator {
-  constructor (button, form) {
-    super(button, form)
-    this._submitButton
-    this._nameInput = document.querySelector('.form-container__input_name');
-    this._nameField = document.querySelector('.profile__name');
-    this._jobInput = document.querySelector('.form-container__input_job');
-    this._jobField = document.querySelector('.profile__job');
 
-  }
+// class FormNewPlace extends FormValidator {
+//   constructor (button, form) {
+//     super(button, form)
+//     this._submitButton
+//     
+//   }
 
-  _handleOpenForm() {
-    super._handleOpenForm();
-    this._nameInput.value = this._nameField.textContent;
-    this._jobInput.value = this._jobField.textContent;
-  }
-
-  _submitForm() {
-    this._nameField.textContent = this._nameInput.value;
-    this._jobField.textContent = this._jobInput.value;
-    super._submitForm();
-    this._popupWithForm.close();
-    this._form.reset();
-  }
-}
-
-class FormNewPlace extends FormValidator {
-  constructor (button, form) {
-    super(button, form)
-    this._submitButton
-    this._placeInput = document.querySelector('.form-container__input_place');
-    this._imageInput = document.querySelector('.form-container__input_image');
-  }
-
-  _handleOpenForm() {
-    super._handleOpenForm();
-    this._submitButton.classList.add(this._inactiveButtonClass);
-    this._submitButton.setAttribute('disabled', 'true');
-  }
+//   _handleOpenForm() {
+//     super._handleOpenForm();
+//     this._submitButton.classList.add(this._inactiveButtonClass);
+//     this._submitButton.setAttribute('disabled', 'true');
+//   }
 
 
-  _submitForm() {
-    const newPlace = [{
-      name: this._placeInput.value,
-      link: this._imageInput.value
-    }]
-    cardRenderer(newPlace);
-    super._submitForm();
-    this._popupWithForm.close();
-    this._form.reset();
-  }
-}
+//   _submitForm() {
+//     const newPlace = [{
+//       name: this._placeInput.value,
+//       link: this._imageInput.value
+//     }]
+//     cardRenderer(newPlace);
+//     super._submitForm();
+//     this._popupWithForm.close();
+//     this._form.reset();
+//   }
+// }
 
-export {FormValidator, FormEditProfile, FormNewPlace};
+export {FormValidator};

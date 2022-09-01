@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Mesto</title>
 </head>
 <body class="page">
@@ -12,7 +12,7 @@
     </header>
     <main>
       <section class="profile">
-        <img src="./images/kusto-avatar.svg" class="profile__avatar" alt="Фотография человека">
+        <img src="<%=require('./images/kusto-avatar.svg')%>" class="profile__avatar" alt="Фотография человека">
         <div class="profile__info">
           <h1 class="profile__name">Жак-Ив Кусто</h1>
           <button type="button" name="edit-button" class="profile__edit-button"></button>
@@ -49,9 +49,9 @@
         <button type="button" name="close-button" class="popup__close-button"></button>
         <form name="form-new-place" class="form-container form-container_new-place" novalidate>
           <h2 class="form-container__title">Новое место</h2>
-          <input id="form-container__input_place" type="text" name="place-name" placeholder="Название" required minlength="2" maxlength="30" class="form-container__input form-container__input_place"/>
+          <input id="form-container__input_place" type="text" name="name" placeholder="Название" required minlength="2" maxlength="30" class="form-container__input form-container__input_place"/>
           <span id="form-container__input_place-error"></span>
-          <input id="form-container__input_image" type="url" name="img-link" placeholder="Ссылка на картинку" required class="form-container__input form-container__input_image"/>
+          <input id="form-container__input_image" type="url" name="link" placeholder="Ссылка на картинку" required class="form-container__input form-container__input_image"/>
           <span id="form-container__input_image-error"></span>
           <button type="submit" name="submit-new-place" class="form-container__submit">Сохранить</button>
         </form>
@@ -70,7 +70,7 @@
 
     <template id="card-template">
       <div class="card">
-        <img src="#" class="card__image" alt="Картинка карточки в миниатюре">
+        <img src="#>" class="card__image" alt="Картинка карточки в миниатюре">
         <h2 class="card__title"></h2>
         <button type="button" name="like-button" class="card__like"></button>
         <button type="button" name="delete-button" class="card__delete-button"></button>

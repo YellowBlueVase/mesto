@@ -1,21 +1,28 @@
 class UserInfo {
 
-    constructor({name, description}) {
-        this._name = name;
-        this._description = description
+    constructor({firstText, secondText, firstInput, secondInput}) {
+        this._firstText = firstText;
+        this._secondText = secondText;
+        this._firstInput = firstInput;
+        this._secondInput = secondInput;
     }
 
     getUserInfo() {
-        const user = [{
-            name: this._name.textContent, 
-            description: this._description.textContent
-        }];
-        return user;
+        console.log('getUserInfo FIRST TEXT: ', this._firstText.textContent)
+        console.log('getUserInfo SECOND TEXT: ', this._secondText)
+        console.log('getUserInfo FIRST INPUT: ', this._firstInput)
+        console.log('getUserInfo SECOND INPUT: ', this._secondInput)
+        this._firstInput.value = this._firstText.textContent;
+        this._secondInput.value = this._secondText.textContent
     }
 
-    setUserInfo(data) {
-        this._name.textContent = data.name;
-        this._description.textContent = data.description;
+    setUserInfo(formData) {
+        console.log('setUserInfo FIRST TEXT: ', this._firstText)
+        console.log('setUserInfo SECOND TEXT: ', this._secondText)
+        console.log('setUserInfo FIRST INPUT: ', this._firstInput)
+        console.log('setUserInfo SECOND INPUT: ', this._secondInput)
+        this._firstText.textContent = formData['person-name'];
+        this._secondText.textContent = formData['job-description'];
     }
 }
 

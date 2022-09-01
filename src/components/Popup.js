@@ -7,12 +7,14 @@ class Popup {
     
     open() {
         this._popupSelector.classList.add('popup_opened');
-        window.addEventListener('keydown', this._handleEscClose);  
+        document.addEventListener('keydown', this._handleEscClose);  
     }
 
     close() {
-        document.querySelector('.popup_opened').classList.remove('popup_opened');
-        window.removeEventListener('keydown', this._handleEscClose);
+        console.log('Close сработала', true)
+        console.log(this._popupSelector)
+        this._popupSelector.classList.remove('popup_opened');
+        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     _handleEscClose(evt) {

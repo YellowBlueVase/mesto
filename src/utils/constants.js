@@ -9,7 +9,15 @@ const formEditProfile = document.querySelector('.form-container_edit-profile');
 const formNewPlace = document.querySelector('.form-container_new-place');
 const formEditProfilePopup = document.querySelector('.popup_type_edit-profile');
 const formNewPlacePopup = document.querySelector('.popup_type_new-place');
-
+const userNameField = document.querySelector('.profile__name');
+const userDescriptionField = document.querySelector('.profile__job');
+const nameInput = document.querySelector('.form-container__input_name');
+const descriptionInput = document.querySelector('.form-container__input_job');
+const placeNameField = document.querySelector('.card__title');
+const placeLinkField = document.querySelector('.card__image');
+const placeInput = document.querySelector('.form-container__input_place');
+const imageInput = document.querySelector('.form-container__input_image');
+const submitButton = '.form-container__submit';
 
 const initialCards = [
     {
@@ -40,4 +48,4 @@ const initialCards = [
 
 const popups = document.querySelectorAll('.popup');
 
-export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace };
+export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, submitButton };
