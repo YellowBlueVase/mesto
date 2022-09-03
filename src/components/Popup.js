@@ -1,19 +1,17 @@
 class Popup {
 
     constructor(popupSelector) {
-        this._popupSelector = popupSelector;
+        this._popup = popupSelector;
         this._handleEscClose = this._handleEscClose.bind(this);
      }
     
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscClose);  
     }
 
     close() {
-        console.log('Close сработала', true)
-        console.log(this._popupSelector)
-        this._popupSelector.classList.remove('popup_opened');
+        this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscClose);
     }
 
@@ -24,7 +22,7 @@ class Popup {
     }
 
     setEventListeners() {    
-        this._popupSelector.addEventListener('click', (evt) => {
+        this._popup.addEventListener('click', (evt) => {
             const target = evt.target;
             if (target.classList.contains('popup')) {
                 this.close()}

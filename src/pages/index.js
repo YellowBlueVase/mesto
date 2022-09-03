@@ -1,24 +1,28 @@
 import { FormValidator } from '../components/FormValidator.js';
-import { initialCards, popups, addButton, editButton, formEditProfile, formNewPlace, formEditProfilePopup, formNewPlacePopup, userNameField, userDescriptionField, nameInput, descriptionInput, placeNameField, placeLinkField, imageInput, placeInput } from '../utils/constants.js';
-import { cardRenderer } from '../utils/utils.js';
-import PopupWithImage from '../components/PopupWithImage.js';
+import { initialCards, elements, addButton, editButton, formEditProfile, formNewPlace, formEditProfilePopup, formNewPlacePopup, userNameField, userDescriptionField, nameInput, descriptionInput, inactiveButton, inputError, errorClass, inputField, submitButton } from '../utils/constants.js';
+import { createCard } from '../utils/utils.js';
+import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css';
 
 
-cardRenderer(initialCards)
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = createCard(item);
+      cardList.addItem(card);
+    }
+  }, 
+  elements);
 
-popups.forEach(popup => {
-  const nextPopup = new PopupWithImage(popup);
-  nextPopup.setEventListeners();
-})
+cardList.renderItems()
+
 
 const userProfile = new UserInfo({
-  firstText: userNameField,
-  secondText: userDescriptionField,
-  firstInput: nameInput,
-  secondInput: descriptionInput
+  name: userNameField,
+  description: userDescriptionField,
 })
 
 const editForm = new PopupWithForm(
@@ -28,29 +32,47 @@ const editForm = new PopupWithForm(
     userProfile.setUserInfo(formData);
   });
 editForm.setEventListeners();
-const editFormValidator = new FormValidator(formEditProfile);
-editFormValidator.setEventListeners();
+
+const editFormValidator = new FormValidator(
+  { inactive: inactiveButton, 
+    error: inputError, 
+    errorCl: errorClass, 
+    input: inputField, 
+    submit: submitButton
+  },
+  formEditProfile);
+editFormValidator.enableValidation();
 
 editButton.addEventListener('click', ()=> {
-  userProfile.getUserInfo();
+  const userInfo = userProfile.getUserInfo();
+  nameInput.value = userInfo.name;
+  descriptionInput.value = userInfo.description;
+  editFormValidator.resetValidation();
   editForm.open();
 })
 
-// editButton.addEventListener('click', ()=> {
-//   cardRenderer([{name: 'bumba', link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'}])
-// })
 const addNewPlaceForm = new PopupWithForm(
   formNewPlacePopup, 
   formNewPlace, 
   function handleFormSubmit (formData) {
-    console.log('index.js ЭТО ДАННЫЕ ДЛЯ ФОРМЫ', formData)
-    cardRenderer([formData])
+    const card = createCard(formData);
+    cardList.addItem(card)
   }
-  );
+)
+
 addNewPlaceForm.setEventListeners();
-const addNewPlaceFormValidator = new FormValidator(formNewPlace);
-addNewPlaceFormValidator.setEventListeners();
+
+const addNewPlaceFormValidator = new FormValidator(
+  { inactive: inactiveButton, 
+    error: inputError, 
+    errorCl: errorClass, 
+    input: inputField, 
+    submit: submitButton
+  },
+  formNewPlace);
+addNewPlaceFormValidator.enableValidation();
 
 addButton.addEventListener('click', ()=> {
+  addNewPlaceFormValidator.resetValidation();
   addNewPlaceForm.open();
 })

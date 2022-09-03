@@ -1,16 +1,17 @@
 import Popup from "./Popup.js";
-import {cardImage, cardTitle} from "../utils/constants.js";
 
 
 class PopupWithImage extends Popup {
-    constructor(popupSelector) {
+    constructor(popupSelector, data) {
         super(popupSelector);
+        this._cardTitle = data.title;
+        this._cardImage = data.image;
     }
 
     open(name, link) {
-        cardTitle.textContent = name;
-        cardImage.src = link;
-        cardImage.alt = `Картинка c местом ${name} большого размера`;
+        this._cardTitle.textContent = name;
+        this._cardImage.src = link;
+        this._cardImage.alt = `Картинка c местом ${name} большого размера`;
         super.open();
     }
 }

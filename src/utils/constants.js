@@ -17,7 +17,12 @@ const placeNameField = document.querySelector('.card__title');
 const placeLinkField = document.querySelector('.card__image');
 const placeInput = document.querySelector('.form-container__input_place');
 const imageInput = document.querySelector('.form-container__input_image');
+const inactiveButton = 'form-container__submit_inactive';
+const inputError = 'form-container__input_type_error';
+const errorClass = 'form-container__input_error_active';
+const inputField = '.form-container__input';
 const submitButton = '.form-container__submit';
+
 
 const initialCards = [
     {
@@ -48,4 +53,4 @@ const initialCards = [
 
 const popups = document.querySelectorAll('.popup');
 
-export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, submitButton };
+export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, inactiveButton, inputError, errorClass, inputField, submitButton };
