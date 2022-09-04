@@ -1,15 +1,10 @@
 class Card {
-    _name
-    _link
-    _cardSelector
-    _popup
-
-    constructor(data, cardSelector, handleCardClick) {
+    constructor(data, cardSelector, handleCardClick, popup) {
       this._name = data.name;
       this._link = data.link;
       this._cardSelector = cardSelector;
-      this._handleCardClick = handleCardClick
-      this._popup = document.querySelector('.popup_type_large-image');
+      this._handleCardClick = handleCardClick;
+      this._popup = popup;
     }
     
     _getTemplate() {

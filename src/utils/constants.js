@@ -22,7 +22,7 @@ const inputError = 'form-container__input_type_error';
 const errorClass = 'form-container__input_error_active';
 const inputField = '.form-container__input';
 const submitButton = '.form-container__submit';
-
+const largeImagePopup = document.querySelector('.popup_type_large-image');
 
 const initialCards = [
     {
@@ -53,4 +53,4 @@ const initialCards = [
 
 const popups = document.querySelectorAll('.popup');
 
-export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, inactiveButton, inputError, errorClass, inputField, submitButton };
+export {cardContainer, cardImage, cardTitle, cardTemplate, elements, initialCards, popups, addButton, editButton, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, inactiveButton, inputError, errorClass, inputField, submitButton, largeImagePopup };
