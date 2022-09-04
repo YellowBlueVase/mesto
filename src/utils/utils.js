@@ -2,13 +2,16 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import Card from "../components/Card.js";
 import { cardTemplate, cardTitle, cardImage, largeImagePopup } from "./constants.js";
 
+const cardPopup = new PopupWithImage(
+  largeImagePopup,
+  {
+    title: cardTitle, 
+    image: cardImage
+  },
+);
+cardPopup.setEventListeners();
+
 function createCard(item){
-  const cardPopup = new PopupWithImage(
-    largeImagePopup,
-    {title: cardTitle, 
-    image: cardImage},
-    );
-  cardPopup.setEventListeners();
   const card = new Card(
     item, 
     cardTemplate, 
