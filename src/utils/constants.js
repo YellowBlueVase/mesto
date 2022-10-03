@@ -5,7 +5,7 @@ const cardTitle = document.querySelector('.image-container__title');
 const elements = document.querySelector('.elements');
 const addButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
-const editAvatarButton = document.querySelector('.profile__avatar_hover');
+const editAvatarButton = document.querySelector('.profile__avatar-hover');
 const avatarImage = document.querySelector('.profile__avatar-image');
 const formEditProfile = document.querySelector('.form-container_edit-profile');
 const formEditProfilePopup = document.querySelector('.popup_type_edit-profile');
@@ -21,6 +21,7 @@ const placeNameField = document.querySelector('.card__title');
 const placeLinkField = document.querySelector('.card__image');
 const placeInput = document.querySelector('.form-container__input_place');
 const imageInput = document.querySelector('.form-container__input_image');
+const avatarInput = document.querySelector('.form-container__input_avatar');
 const inactiveButton = 'form-container__submit_inactive';
 const inputError = 'form-container__input_type_error';
 const errorClass = 'form-container__input_error_active';
@@ -32,4 +33,4 @@ const formDelete = document.querySelector('.delete-container');
 
 const popups = document.querySelectorAll('.popup');
 
-export {avatarImage, cardContainer, cardImage, cardTitle, cardTemplate, elements, popups, addButton, editButton, editAvatarButton, formEditAvatar, formEditAvatarPopup, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, inactiveButton, inputError, errorClass, inputField, submitButton, largeImagePopup, cardDeletePopup, formDelete };
+export {avatarImage, avatarInput, cardContainer, cardImage, cardTitle, cardTemplate, elements, popups, addButton, editButton, editAvatarButton, formEditAvatar, formEditAvatarPopup, formEditProfilePopup, formNewPlacePopup, formEditProfile, formNewPlace, userNameField, userDescriptionField , nameInput, descriptionInput, placeNameField, placeLinkField, placeInput, imageInput, inactiveButton, inputError, errorClass, inputField, submitButton, largeImagePopup, cardDeletePopup, formDelete };
