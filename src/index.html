@@ -13,8 +13,8 @@
     <main>
       <section class="profile">
         <div class="profile__avatar">
-          
-            <img src="<%=require('./images/kusto-avatar.svg')%>" class="profile__avatar_image" alt="Фотография человека">
+          <!-- <%=require('./images/kusto-avatar.svg')%> -->
+            <img src="" class="profile__avatar_image" alt="Фотография человека">
             <button type="button" name="edit-avatar" class="profile__avatar_hover"><img src="<%=require('./images/avatar-hover.svg')%>" class="profile__avatar_icon"></button>
         </div>
         <div class="profile__info">
@@ -53,8 +53,8 @@
         <button type="button" name="close-button" class="popup__close-button"></button>
         <form name="form-avatar" class="form-container form-container_edit-avatar" novalidate>
           <h2 class="form-container__title">Обновить аватар</h2>
-          <input id="form-container__input_name" type="text" name="avatar" placeholder="Ссылка на аватар" required minlength="2" maxlength="400" class="form-container__input form-container__input_name"/>
-          <span id="form-container__input_name-error"></span>
+          <input id="form-container__input_avatar" type="text" name="avatar" placeholder="Ссылка на аватар" required minlength="2" maxlength="400" class="form-container__input form-container__input_name"/>
+          <span id="form-container__input_avatar-error"></span>
           <button type="submit" name="submit-avatar" class="form-container__submit">Сохранить</button>
         </form>
       </div>
