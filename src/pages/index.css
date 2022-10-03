@@ -6,8 +6,12 @@
 @import url(../blocks/card/__image/card__image.css);
 @import url(../blocks/card/__like/card__like.css);
 @import url(../blocks/card/__like/_active/card__like_active.css);
+@import url(../blocks/card/__like-counter/card__like-counter.css);
 @import url(../blocks/card/__delete-button/card__delete-button.css);
 @import url(../blocks/card/__title/card__title.css);
+@import url(../blocks/delete-container/delete-container.css);
+@import url(../blocks/delete-container/__submit/delete-container__submit.css);
+@import url(../blocks/delete-container/__title/delete-container__title.css);
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
 @import url(../blocks/header/header.css);
