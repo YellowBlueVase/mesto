@@ -8,17 +8,24 @@ class PopupWithDelete extends Popup {
         this._handleFormSubmit = handleFormSubmit;
     }
 
-    setEventListeners(card, cardId) {
+    open(card, cardId) {
+        super.open();
+        this._card = card;
+        this._cardId = cardId
+    }
+
+    setEventListeners() {
         super.setEventListeners();
         this._form.addEventListener('submit', (evt) => {
             evt.preventDefault();
-            this._handleFormSubmit(card, cardId);
+            this._handleFormSubmit(this._cardId);
             this.close();
+            this._remove();
           })
     }
 
-    close() {
-        super.close();
+    _remove() {
+        this._card.remove();
     }
 }
 

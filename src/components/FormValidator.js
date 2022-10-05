@@ -68,33 +68,5 @@ class FormValidator {
       this._errorElement.textContent = '';
     };
 }
-////////////////////////////////////// 
-
-
-// class FormNewPlace extends FormValidator {
-//   constructor (button, form) {
-//     super(button, form)
-//     this._submitButton
-//     
-//   }
-
-//   _handleOpenForm() {
-//     super._handleOpenForm();
-//     this._submitButton.classList.add(this._inactiveButtonClass);
-//     this._submitButton.setAttribute('disabled', 'true');
-//   }
-
-
-//   _submitForm() {
-//     const newPlace = [{
-//       name: this._placeInput.value,
-//       link: this._imageInput.value
-//     }]
-//     cardRenderer(newPlace);
-//     super._submitForm();
-//     this._popupWithForm.close();
-//     this._form.reset();
-//   }
-// }
 
 export {FormValidator};
