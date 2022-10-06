@@ -24,9 +24,7 @@ class UserInfo {
             this._avatarImage.src = formData.avatar;
         }
         if (formData._id) {
-            console.log(this._id)
             this._id = formData._id;
-            console.log(this._id)
         }
     }
 }

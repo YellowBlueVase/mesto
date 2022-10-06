@@ -1,14 +1,13 @@
 import { FormValidator } from '../components/FormValidator.js';
-import { cardTitle, cardImage, largeImagePopup, cardDeletePopup, formDelete, avatarImage, elements, addButton, editButton, editAvatarButton, formEditAvatar, formEditAvatarPopup, formEditProfile, formNewPlace, formEditProfilePopup, formNewPlacePopup, userNameField, userDescriptionField, nameInput, descriptionInput, inactiveButton, inputError, errorClass, inputField, submitButton } from '../utils/constants.js';
-import { createCard } from '../utils/utils.js';
+import { cardTitle, cardTemplate, cardImage, largeImagePopup, cardDeletePopup, formDelete, avatarImage, elements, addButton, editButton, editAvatarButton, formEditAvatar, formEditAvatarPopup, formEditProfile, formNewPlace, formEditProfilePopup, formNewPlacePopup, userNameField, userDescriptionField, nameInput, descriptionInput, inactiveButton, inputError, errorClass, inputField, submitButton } from '../utils/constants.js';
 import Api from '../components/Api.js';
+import Card from "../components/Card.js";
 import Section from '../components/Section.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithDelete from '../components/PopupWithDelete.js';
 import UserInfo from '../components/UserInfo.js';
 import './index.css';
-
 
 const api = new Api({
   url: 'https://mesto.nomoreparties.co/v1/cohort-49/',
@@ -17,9 +16,55 @@ const api = new Api({
     Authorization: '2cb75315-5b64-4ef0-b9e0-7942d91d0c8e'
   }})
 
+function createCard(item, profile){
+  const card = new Card(
+      item,
+      profile,
+      cardTemplate, 
+      function handleCardClick () {
+        cardPopup.open(this._name, this._link)}, 
+      function handleLikeClick () {
+        if (this.isLiked()) 
+        {
+          api.deleteLike(this._cardId)
+          .then((data) => {
+              this.setLikes(data.likes)})
+          .catch((err) => {console.log(err)})
+        }
+        else {
+          api.addLike(this._cardId)
+          .then((data) => {
+            this.setLikes(data.likes)})
+          .catch((err) => {console.log(err)})}}, 
+      function handleDeletePopup() {
+        deletePopup.open(this)});
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
+const deletePopup = new PopupWithDelete(
+  cardDeletePopup, 
+  formDelete,
+  function handleFormSubmit (card) {
+    api.deleteCard(card._cardId)
+    .then(() => {
+      card.removeCard()
+    })
+    .catch((err) => console.log(err))
+  }
+);
+deletePopup.setEventListeners()
+
+const cardPopup = new PopupWithImage(
+  largeImagePopup,
+  { title: cardTitle, 
+    image: cardImage},
+);
+cardPopup.setEventListeners();
+
 const cardList = new Section(
   function renderer(data, profile) {
-    const card = createCard(data, profile, api);
+    const card = createCard(data, profile);
     cardList.addItems(card);
   }, 
   elements);
@@ -35,12 +80,9 @@ Promise.all([
   api.getInitialCards(),
   api.getProfileInfo()
 ])
-.then((values) => {
-  const getInitialCards = values[0];
-  const getProfileInfo = values[1];
-  console.log(getProfileInfo)
-  cardList.renderItems(getInitialCards, getProfileInfo);
-  userProfile.setUserInfo(getProfileInfo);
+.then(([initialCards, currentUser]) => {
+  cardList.renderItems(initialCards, currentUser);
+  userProfile.setUserInfo(currentUser);
   })
 .catch((err) => {console.log(err)})
 
@@ -90,13 +132,11 @@ const newPlaceForm = new PopupWithForm(
       likes: [],
       owner: userProfile.getUserInfo()})
     .then((data) => {
-      console.log(userProfile.getUserInfo())
       const card = createCard(data, userProfile.getUserInfo(), api);
       cardList.addItem(card);
     })
     .catch((err) => {console.log(err)})
-  .catch((err) => {console.log(err)})
-  .finally(() => {button.textContent = 'Сохранить'})
+    .finally(() => {button.textContent = 'Сохранить'})
   }
 )
 newPlaceForm.setEventListeners();
@@ -145,20 +185,4 @@ editAvatarButton.addEventListener('click', ()=> {
   avatarForm.open();
 })
 
-const deletePopup = new PopupWithDelete(
-  cardDeletePopup, 
-  formDelete,
-  function handleFormSubmit (cardId) {
-    api.deleteCard(cardId);
-  }
-);
-deletePopup.setEventListeners()
 
-const cardPopup = new PopupWithImage(
-  largeImagePopup,
-  { title: cardTitle, 
-    image: cardImage},
-);
-cardPopup.setEventListeners();
-
-export {deletePopup, cardPopup}
