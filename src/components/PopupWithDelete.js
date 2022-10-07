@@ -2,15 +2,14 @@ import Popup from "./Popup.js";
 
 class PopupWithDelete extends Popup {
 
-    constructor(popupSelector, formSelector, handleFormSubmit) {
+    constructor(popupSelector, formSelector) {
         super(popupSelector);
         this._form = formSelector;
-        this._handleFormSubmit = handleFormSubmit;
     }
 
-    open(card) {
+    open(handleFormSubmit) {
         super.open();
-        this._card = card;
+        this._handleFormSubmit = handleFormSubmit;
     }
 
     setEventListeners() {

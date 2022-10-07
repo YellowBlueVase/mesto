@@ -16,6 +16,13 @@ const api = new Api({
     Authorization: '2cb75315-5b64-4ef0-b9e0-7942d91d0c8e'
   }})
 
+function handleDeleteCard(card) {
+  api.deleteCard(card._cardId)
+    .then(() => {
+      card.removeCard()})
+    .catch((err) => console.log(err))
+}
+
 function createCard(item, profile){
   const card = new Card(
       item,
@@ -37,22 +44,14 @@ function createCard(item, profile){
             this.setLikes(data.likes)})
           .catch((err) => {console.log(err)})}}, 
       function handleDeletePopup() {
-        deletePopup.open(this)});
+        deletePopup.open(() => handleDeleteCard(card))});
   const cardElement = card.generateCard();
   return cardElement;
 }
 
 const deletePopup = new PopupWithDelete(
   cardDeletePopup, 
-  formDelete,
-  function handleFormSubmit (card) {
-    api.deleteCard(card._cardId)
-    .then(() => {
-      card.removeCard()
-    })
-    .catch((err) => console.log(err))
-  }
-);
+  formDelete);
 deletePopup.setEventListeners()
 
 const cardPopup = new PopupWithImage(

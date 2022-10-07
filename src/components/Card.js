@@ -51,8 +51,8 @@ class Card {
         }
     }
 
-    isLiked() {
-        return (this._likes.filter(item => item._id === this._myId).length > 0)
+    isLiked() { 
+        return this._likes.some(item => item._id === this._myId)
     }
 
     _checkOwnerId() {
@@ -73,7 +73,8 @@ class Card {
     }
 
     removeCard() {
-        this._element.remove()
+        this._element.remove();
+        this._element = null;
     }
 }
 
